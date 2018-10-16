@@ -2,34 +2,34 @@
 <head>
 <!-- CSS -->
 <style type="text/css">
-	div {
-		margin-bottom: 20px;
-		background-color: gray;
-	}
+    div {
+        margin-bottom: 20px;
+        background-color: gray;
+    }
 
-	table {
+    table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-		overflow-y:auto;
-	}
+        overflow-y:auto;
+    }
 
-	table td, table th {
+    table td, table th {
     border: 1px solid #ddd;
     padding: 4px;
-	}
+    }
 
-	table tr:nth-child(even){background-color: #f2f2f2;}
+    table tr:nth-child(even){background-color: #f2f2f2;}
 
-	table tr:hover {background-color: #ddd;}
+    table tr:hover {background-color: #ddd;}
 
-	table th {
+    table th {
     padding-top: 4px;
     padding-bottom: 4px;
     text-align: center;
     background-color: #050e3a;
     color: white;
-	}
+    }
 
 </style>
 
@@ -38,7 +38,7 @@
 
 // Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment.
 var organizations = [
-	 {
+     {
         "Region": "East Asia & Pacific",
         "Country": "New Zealand",
         "Country Income Level": "High income",
@@ -226,46 +226,47 @@ var organizations = [
 
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
-	<div id="org_table"></div>
+    <div id="org_table"></div>
 
 <script>
 // outputs the first item of the organizations array. Just for testing.
-<<<<<<< HEAD
 console.log(organizations[0]['Sectors']);
 
-var rows = ''
-var starter = "<table><tr><th>Region</th><th>Country</th><th>Country Income Level</th><th>Organization Name</th><th>Organization Type</th><th>Sectors</th><th>Description</th><th>City</th><th>State/Region</th><th>Founding Year</th><th>Size</th><th>Type of Data Used</th><th>ProfileID</th></tr>"
-var ending = "</table>"
+//holder variables for each section of the string that will be inserted into the tags
+var table_body = ''
+var starter_row = "<table><tr><th>Region</th><th>Country</th><th>Country Income Level</th><th>Organization Name</th><th>Organization Type</th><th>Sectors</th><th>Description</th><th>City</th><th>State/Region</th><th>Founding Year</th><th>Size</th><th>Type of Data Used</th><th>ProfileID</th></tr>"
+var ending_string = "</table>"
 
-function make_rows(){
-	for (var i = 0; i < organizations.length; i++) {
-			//document.getElementById('org_table').innerHTML += '<p>' + organizations[i]["Organization Name"] + '</p>'
-=======
-// console.log(organizations[0]); 
-console.log("test");
->>>>>>> d592fb2273ba759b48e25a023e31f40373aadb3a
 
-			var region = organizations[i]["Region"]
-			var country = organizations[i]["Country"]
-			var country_income = organizations[i]["Country Income Level"]
-			var org_name = organizations[i]["Organization Name"]
-			var org_type = organizations[i]["Organization Type"]
-			var sectors = organizations[i]["Sectors"]
-			var description = organizations[i]["Description"]
-			var city = organizations[i]["City"]
-			var state = organizations[i]["State/Region"]
-			var year = organizations[i]["Founding Year"]
-			var size = organizations[i]["Size"]
-			var data = organizations[i]["Type of Data Used"]
-			var profile_id = organizations[i]["profileID"]
+//loop that creates each individual row and appends it to the each_row var
+function create_body_of_table(){
+    for (var i = 0; i < organizations.length; i++) {
 
-	   	rows += '<tr><td>' + region + '</td><td>'+country+ '</td><td>'+country_income+ '</td><td>'+org_name+'</td><td>'+org_type+'</td><td>'+sectors+'</td><td>'+description+'</td><td>'+city+'</td><td>'+state+ '</td><td>'+year+'</td><td>'+size+'</td><td>'+data+'</td><td>'+profile_id+'</td></tr>'
-		}
+            var region = organizations[i]["Region"]
+            var country = organizations[i]["Country"]
+            var country_income = organizations[i]["Country Income Level"]
+            var org_name = organizations[i]["Organization Name"]
+            var org_type = organizations[i]["Organization Type"]
+            var sectors = organizations[i]["Sectors"]
+            var description = organizations[i]["Description"]
+            var city = organizations[i]["City"]
+            var state = organizations[i]["State/Region"]
+            var year = organizations[i]["Founding Year"]
+            var size = organizations[i]["Size"]
+            var data = organizations[i]["Type of Data Used"]
+            var profile_id = organizations[i]["profileID"]
+
+        table_body = table_body + '<tr><td>' + region + '</td><td>'+ country + '</td><td>' + country_income + '</td><td>' + org_name + '</td><td>' + org_type +'</td><td>'+sectors+'</td><td>'+description+'</td><td>'+city+'</td><td>'+state+ '</td><td>'+year+'</td><td>'+size+'</td><td>'+data+'</td><td>'+profile_id+'</td></tr>'
+        }
 }
+
+//function placed here for logic reasons to be able to keep track of the order of things
 function display_info(){
-	make_rows()
-	document.getElementById('org_table').innerHTML = starter+rows+ending
+    create_body_of_table()
+    document.getElementById('org_table').innerHTML = starter_row + table_body + ending_string
 }
+
+//run everything
 display_info()
 
 //make_txt()
