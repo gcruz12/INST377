@@ -242,35 +242,93 @@ var ending_string = "</table>"
 function create_body_of_table(){
     for (var i = 0; i < organizations.length; i++) {
 
-            var region = organizations[i]["Region"]
-            var country = organizations[i]["Country"]
-            var country_income = organizations[i]["Country Income Level"]
-            var org_name = organizations[i]["Organization Name"]
-            var org_type = organizations[i]["Organization Type"]
-            var sectors = organizations[i]["Sectors"]
-            var description = organizations[i]["Description"]
-            var city = organizations[i]["City"]
-            var state = organizations[i]["State/Region"]
-            var year = organizations[i]["Founding Year"]
-            var size = organizations[i]["Size"]
-            var data = organizations[i]["Type of Data Used"]
-            var profile_id = organizations[i]["profileID"]
+            var region = organizations[i]["Region"];
+            var country = organizations[i]["Country"];
+            var country_income = organizations[i]["Country Income Level"];
+            var org_name = organizations[i]["Organization Name"];
+            var org_type = organizations[i]["Organization Type"];
+            var sectors = organizations[i]["Sectors"];
+            var description = organizations[i]["Description"];
+            var city = organizations[i]["City"];
+            var state = organizations[i]["State/Region"];
+            var year = organizations[i]["Founding Year"];
+            var size = organizations[i]["Size"];
+            var data = organizations[i]["Type of Data Used"];
+            var profile_id = organizations[i]["profileID"];
 
-        table_body = table_body + '<tr><td>' + region + '</td><td>'+ country + '</td><td>' + country_income + '</td><td>' + org_name + '</td><td>' + org_type +'</td><td>'+sectors+'</td><td>'+description+'</td><td>'+city+'</td><td>'+state+ '</td><td>'+year+'</td><td>'+size+'</td><td>'+data+'</td><td>'+profile_id+'</td></tr>'
+        table_body = table_body + '<tr><td>' + region + '</td><td>'+ country + '</td><td>' + country_income + '</td><td>' + org_name + '</td><td>' + org_type +'</td><td>'+sectors+'</td><td>'+description+'</td><td>'+city+'</td><td>'+state+ '</td><td>'+year+'</td><td>'+size+'</td><td>'+data+'</td><td>'+profile_id+'</td></tr>';
         }
 }
 
 //function placed here for logic reasons to be able to keep track of the order of things
 function display_info(){
-    create_body_of_table()
+    create_body_of_table();
     document.getElementById('org_table').innerHTML = starter_row + table_body + ending_string
 }
 
 //run everything
-display_info()
+display_info();
 
-//make_txt()
-//make_txt()
+//displaying answers to questions
+console.log('ANSWERS TO QUESTIONS');
+
+
+//nonprofits
+var counter = 0;
+for (var i = 0; i < organizations.length; i++) {
+
+    var orgs = organizations[i]["Organization Type"];
+    if(orgs == 'Nonprofit') {
+        counter ++;
+    }
+}
+console.log('1. How many non-profit organizations are listed? = '+counter);
+
+//orgs less than 10
+counter = 0;
+for (var i = 0; i < organizations.length; i++) {
+
+    var orgs = organizations[i]["Founding Year"];
+    if(orgs > 2008) {
+        counter ++;
+    }
+}
+console.log('2. How many organizations are less than 10 years old? = '+ counter);
+
+
+//How many of these organizations are North American?
+counter = 0;
+for (var i = 0; i < organizations.length; i++) {
+
+    var orgs = organizations[i]["Region"];
+    if(orgs == 'North America') {
+        counter ++;
+    }
+}
+console.log('3. How many of these organizations are North American? = '+ counter);
+
+
+//How many organizations used the Transportation type of data?
+counter = 0;
+for (var i = 0; i < organizations.length; i++) {
+
+    var orgs = organizations[i]["Type of Data Used"];
+    if(orgs.includes('Transportation') === true) {
+        counter ++;
+    }
+}
+console.log('4. How many organizations used the Transportation type of data? = '+ counter);
+
+//Interesting one
+counter = 0;
+for (var i = 0; i < organizations.length; i++) {
+
+    var orgs = organizations[i]["Size"];
+    if(orgs == '1 to 10') {
+        counter ++;
+    }
+}
+console.log('5. One other feature of the data that you find interesting: How many organizations are small (1-10) employees? = '+ counter);
 </script>
 
 </body>
